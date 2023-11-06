@@ -1,60 +1,144 @@
-import Link from "next/link";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { EdDSATicketPCDPackage } from "@pcd/eddsa-ticket-pcd";
+import { ArgumentTypeName } from "@pcd/pcd-types";
+import { SemaphoreIdentityPCDPackage } from "@pcd/semaphore-identity-pcd";
+import { ZKEdDSAEventTicketPCD, ZKEdDSAEventTicketPCDPackage } from "@pcd/zk-eddsa-event-ticket-pcd";
 import type { NextPage } from "next";
-import { BugAntIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { MetaHeader } from "~~/components/MetaHeader";
 
+const validEventIds = ["b03bca82-2d63-11ee-9929-0e084c48e15f"]; //get the event id from https://api.zupass.org/issue/known-ticket-types
+const fieldsToReveal = {};
+const telegramUserId = "420";
+
+const pcdArgs = {
+  ticket: {
+    argumentType: ArgumentTypeName.PCD,
+    pcdType: EdDSATicketPCDPackage.name,
+    value: undefined,
+    userProvided: true,
+    displayName: "Your Ticket",
+    description: "",
+    validatorParams: {
+      eventIds: validEventIds,
+      productIds: [],
+      // TODO: surface which event ticket we are looking for
+      notFoundMessage: "You don't have a ticket to this event.",
+    },
+    hideIcon: true,
+  },
+  identity: {
+    argumentType: ArgumentTypeName.PCD,
+    pcdType: SemaphoreIdentityPCDPackage.name,
+    value: undefined,
+    userProvided: true,
+  },
+  fieldsToReveal: {
+    argumentType: ArgumentTypeName.ToggleList,
+    value: fieldsToReveal,
+    userProvided: false,
+    hideIcon: true,
+  },
+  externalNullifier: {
+    argumentType: ArgumentTypeName.BigInt,
+    value: undefined,
+    userProvided: false,
+  },
+  validEventIds: {
+    argumentType: ArgumentTypeName.StringArray,
+    value: validEventIds,
+    userProvided: false,
+  },
+  watermark: {
+    argumentType: ArgumentTypeName.BigInt,
+    value: telegramUserId.toString(),
+    userProvided: false,
+    description: " This encodes your Telegram user ID so that the proof can grant only you access to the TG group.",
+  },
+};
+
+function constructZupassPcdGetRequestUrl<T>(
+  zupassClientUrl: string,
+  returnUrl: string,
+  pcdType: any,
+  args: any,
+  options?: any,
+) {
+  const req: any = {
+    type: "Get",
+    returnUrl: returnUrl,
+    args: args,
+    pcdType,
+    options,
+  };
+  const encReq = encodeURIComponent(JSON.stringify(req));
+  return `${zupassClientUrl}#/prove?request=${encReq}`;
+}
+
 const Home: NextPage = () => {
+  const { query } = useRouter();
+
+  const [pcdData, setPcdData] = useState<ZKEdDSAEventTicketPCD>();
+
+  const proof = query && query.proof && JSON.parse(decodeURIComponent(query.proof as string));
+  console.log("proof", proof);
+
+  useEffect(() => {
+    const doDeserialization = async () => {
+      const deserialized = proof && (await ZKEdDSAEventTicketPCDPackage.deserialize(proof.pcd));
+      console.log("deserialized", deserialized);
+      setPcdData(deserialized);
+    };
+    if (proof) {
+      doDeserialization();
+    }
+  }, [proof]);
+
   return (
     <>
       <MetaHeader />
-      <div className="flex items-center flex-col flex-grow pt-10">
-        <div className="px-5">
-          <h1 className="text-center mb-8">
-            <span className="block text-2xl mb-2">Welcome to</span>
-            <span className="block text-4xl font-bold">Scaffold-ETH 2</span>
-          </h1>
-          <p className="text-center text-lg">
-            Get started by editing{" "}
-            <code className="italic bg-base-300 text-base font-bold max-w-full break-words break-all inline-block">
-              packages/nextjs/pages/index.tsx
-            </code>
-          </p>
-          <p className="text-center text-lg">
-            Edit your smart contract{" "}
-            <code className="italic bg-base-300 text-base font-bold max-w-full break-words break-all inline-block">
-              YourContract.sol
-            </code>{" "}
-            in{" "}
-            <code className="italic bg-base-300 text-base font-bold max-w-full break-words break-all inline-block">
-              packages/hardhat/contracts
-            </code>
-          </p>
-        </div>
+      <div>
+        <button
+          className="btn btn-primary m-4"
+          onClick={() => {
+            const result = constructZupassPcdGetRequestUrl(
+              "https://zupass.org",
+              "http://localhost:3000/",
+              ZKEdDSAEventTicketPCDPackage.name,
+              pcdArgs,
+            );
 
-        <div className="flex-grow bg-base-300 w-full mt-16 px-8 py-12">
-          <div className="flex justify-center items-center gap-12 flex-col sm:flex-row">
-            <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
-              <BugAntIcon className="h-8 w-8 fill-secondary" />
-              <p>
-                Tinker with your smart contract using the{" "}
-                <Link href="/debug" passHref className="link">
-                  Debug Contract
-                </Link>{" "}
-                tab.
-              </p>
-            </div>
-            <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
-              <MagnifyingGlassIcon className="h-8 w-8 fill-secondary" />
-              <p>
-                Explore your local transactions with the{" "}
-                <Link href="/blockexplorer" passHref className="link">
-                  Block Explorer
-                </Link>{" "}
-                tab.
-              </p>
-            </div>
-          </div>
-        </div>
+            console.log("result", result);
+
+            window.location.href = result; //or you could have a pop up but it's more complicated
+          }}
+        >
+          CLICK TO GET PROOF
+        </button>
+
+        <button
+          className="btn btn-primary m-4"
+          onClick={() => {
+            if (pcdData) {
+              ZKEdDSAEventTicketPCDPackage.verify(pcdData).then(result => {
+                console.log("verify result", result);
+                if (result) {
+                  alert("VALID");
+
+                  if (pcdData.claim.validEventIds && pcdData.claim.validEventIds[0] == validEventIds[0]) {
+                    alert("AND ALSO THE RIGHT ID");
+                  }
+                } else {
+                  alert("INVALID");
+                }
+              });
+            } else {
+              alert("NO PCD DATA");
+            }
+          }}
+        >
+          VERIFY
+        </button>
       </div>
     </>
   );
