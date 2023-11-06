@@ -1,5 +1,7 @@
 # 🏗 SE2 + zupass.org
 
+🎥 [watch the zoom call here](https://youtu.be/kwACdt3gRms)
+
 quick integration test for both a frontend and backend implementation of the zupass proof+verification process
 
 look at `packages/nextjs/pages/index.tsx` for the frontend implemenation 
