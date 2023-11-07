@@ -44,8 +44,8 @@ const Home: NextPage = () => {
     const data = await response.json();
     notification.success(
       <>
-        <p className="font-bold">Verified</p>
-        <p>{data?.message}</p>
+        <p className="font-bold m-0">Verified!</p>
+        <p className="m-0">{data?.message}</p>
       </>,
     );
   };
@@ -81,15 +81,15 @@ const Home: NextPage = () => {
             </p>
             <div className="flex flex-col gap-4 mt-6">
               <div className="tooltip" data-tip="Loads the Zupass UI in a modal, where you can «proof» your PCD.">
-                <button className="btn btn-primary w-full tooltip" onClick={getProof}>
-                  1. Get Proof
+                <button className="btn btn-secondary w-full tooltip" onClick={getProof} disabled={!!pcd}>
+                  {!pcd ? "1. Get Proof" : "1. Proof Received!"}
                 </button>
               </div>
               <div
                 className="tooltip"
                 data-tip="When you get back the «proof», send it to the server so it can verify it."
               >
-                <button className="btn btn-secondary w-full" disabled={!pcd} onClick={sendPCDToServer}>
+                <button className="btn btn-primary w-full" disabled={!pcd} onClick={sendPCDToServer}>
                   2. Verify
                 </button>
               </div>
