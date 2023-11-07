@@ -47,5 +47,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   // Send ETH to the user. This is just for testing purposes, and it could be any backend action.
   await localWalletClient.sendTransaction({ to: req.body.address, value: parseEther("1"), account: accounts[0] });
 
-  res.status(200).json({ message: "ETH has been sent" });
+  return res.status(200).json({ message: `1 ETH has been sent ${address}` });
 }
