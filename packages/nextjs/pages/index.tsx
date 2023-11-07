@@ -50,18 +50,52 @@ const Home: NextPage = () => {
     );
   };
 
-  // ToDo. Better UI (Card + zupass info)
   return (
     <>
       <MetaHeader />
-      <div>
-        <button className="btn btn-primary m-4" onClick={getProof}>
-          Get Proof
-        </button>
-
-        <button disabled={!pcd} onClick={sendPCDToServer}>
-          Verify
-        </button>
+      <div className="flex flex-col items-center mt-24">
+        <div className="card max-w-[90%] sm:max-w-lg bg-base-100 shadow-xl">
+          <div className="card-body">
+            <h2 className="card-title">Zupass: Scaffold-ETH 2 Starter Kit</h2>
+            <p className="mt-0">
+              Get started with{" "}
+              <a className="link" href="https://github.com/proofcarryingdata/zupass" target="_blank">
+                Zupass
+              </a>{" "}
+              to verify PCDs (Proof-Carrying Data). <span className="font-bold">e.g.</span> Devcon tickets.
+            </p>
+            <p className="text-sm m-0">
+              - Check
+              <code className="mx-1 px-1 italic bg-base-300 font-bold max-w-full break-words break-all inline-block">
+                packages/nextjs/pages/index.tsx
+              </code>
+              to learn how to use it on the frontend.
+            </p>
+            <p className="text-sm m-0">
+              - Check
+              <code className="mx-1 px-1 italic bg-base-300 font-bold max-w-full break-words break-all inline-block">
+                packages/nextjs/pages/api/verify.tsx
+              </code>
+              to learn how to verify the proof on the backend and execute any action (in this example it will send 1 ETH
+              to the connected address).
+            </p>
+            <div className="flex flex-col gap-4 mt-6">
+              <div className="tooltip" data-tip="Loads the Zupass UI in a modal, where you can «proof» your PCD.">
+                <button className="btn btn-primary w-full tooltip" onClick={getProof}>
+                  1. Get Proof
+                </button>
+              </div>
+              <div
+                className="tooltip"
+                data-tip="When you get back the «proof», send it to the server so it can verify it."
+              >
+                <button className="btn btn-secondary w-full" disabled={!pcd} onClick={sendPCDToServer}>
+                  2. Verify
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
