@@ -52,8 +52,10 @@ https://github.com/proofcarryingdata/zupass
 
 part1)
 https://github.com/proofcarryingdata/zupass/blob/main/apps/passport-server/src/services/telegramService.ts#L1104
+
 part2)
 https://github.com/proofcarryingdata/zupass/blob/main/apps/passport-server/src/services/telegramService.ts#L554
+
 part3)
 https://github.com/proofcarryingdata/zupass/blob/main/apps/passport-server/src/services/telegramService.ts#L736
 
