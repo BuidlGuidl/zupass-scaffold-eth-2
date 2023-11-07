@@ -2,17 +2,19 @@
 
 Get started with [Zupass](https://github.com/proofcarryingdata/zupass) to generate proofs & verify PCDs (Proof-Carrying Data).
 
-In the Starter Kit you'll find an example of how to generate a proof for a PCD and verify it on the backend.
-- Frontend (check `packages/nextjs/pages/index.tsx`):
-  - Using `zuauth` we generate a popup where you can generate a proof for a PCD in your Zupass account.
-  - It then sends the proof to the backend.
-- Backend (check `packages/nextjs/pages/api/verify.ts`):
+In this Starter Kit you'll find an example of how to generate a proof and verify it on the backend.
+- **Frontend** (check `packages/nextjs/pages/index.tsx`):
+  - Using `zuauth` we generate a popup where you can generate a proof in your Zupass account.
+  - It then sends the PCD to the backend.
+- **Backend** (check `packages/nextjs/pages/api/verify.ts`):
   - Verifies the proof received from the frontend.
   - If the proof is valid, it sends 1 ETH to the connected wallet address.
 
-Image of the workflow:
+---
 
 ![Workflow](.github/img/workflow.png)
+
+---
 
 ### 🏃‍♀️ Quick Start
 
