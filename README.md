@@ -20,7 +20,7 @@ In this Starter Kit you'll find an example of how to generate a proof and verify
 
 1. Clone the repo
 ```bash
-git clone git@github.com:BuidlGuidl/zupass.git
+git clone https://github.com/BuidlGuidl/zupass-scaffold-eth-2
 cd zupass
 ```
 
