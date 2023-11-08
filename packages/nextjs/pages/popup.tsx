@@ -1,4 +1,4 @@
-import { usePopup } from "zuauth";
+import { usePopup } from "zupass-auth";
 
 /**
  * This popup sends requests and receives PCDs from the passport.
@@ -7,5 +7,5 @@ import { usePopup } from "zuauth";
 export default function Popup() {
   const error = usePopup();
 
-  return <div>{error}</div>;
+  return <div className="absolute w-100 h-100 bg-white">{error}</div>;
 }

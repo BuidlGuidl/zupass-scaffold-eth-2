@@ -2,7 +2,7 @@ import { ZKEdDSAEventTicketPCDPackage } from "@pcd/zk-eddsa-event-ticket-pcd";
 import { NextApiRequest, NextApiResponse } from "next";
 import { createWalletClient, http, isAddress, parseEther } from "viem";
 import { hardhat } from "viem/chains";
-import { isZupassPublicKey } from "zuauth";
+import { isZupassPublicKey } from "zupass-auth";
 
 const localWalletClient = createWalletClient({
   chain: hardhat,
@@ -45,7 +45,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   // ## Actions
   // Send ETH to the user. This is just for testing purposes, and it could be any backend action.
-  await localWalletClient.sendTransaction({ to: req.body.address, value: parseEther("1"), account: accounts[0] });
+  const result = await localWalletClient.sendTransaction({
+    to: req.body.address,
+    value: parseEther("1"),
+    account: accounts[0],
+  });
 
-  return res.status(200).json({ message: `1 ETH has been sent ${address}` });
+  console.log("sent 1 eth to " + address, result);
+
+  return res.status(200).json({ message: `🎉 PCD verified! 1 ETH has been sent ${address}!`, txHash: result });
 }

@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import type { NextPage } from "next";
 import { useAccount } from "wagmi";
-import { useZuAuth } from "zuauth";
+import { useZuAuth } from "zupass-auth";
 import { MetaHeader } from "~~/components/MetaHeader";
 import { notification } from "~~/utils/scaffold-eth";
 
@@ -62,14 +62,14 @@ const Home: NextPage = () => {
               <a className="link" href="https://github.com/proofcarryingdata/zupass" target="_blank">
                 Zupass
               </a>{" "}
-              to verify PCDs (Proof-Carrying Data). <span className="font-bold">e.g.</span> Devcon tickets.
+              to verify PCDs (Proof-Carrying Data). <span className="font-bold">e.g.</span> Devconnect tickets.
             </p>
             <p className="text-sm m-0">
               - Check
               <code className="mx-1 px-1 italic bg-base-300 font-bold max-w-full break-words break-all inline-block">
                 packages/nextjs/pages/index.tsx
               </code>
-              to learn how to use it on the frontend.
+              to learn how to ask Zupass for a zero knowledge proof.
             </p>
             <p className="text-sm m-0">
               - Check
@@ -80,14 +80,14 @@ const Home: NextPage = () => {
               to the connected address).
             </p>
             <div className="flex flex-col gap-4 mt-6">
-              <div className="tooltip" data-tip="Loads the Zupass UI in a modal, where you can «proof» your PCD.">
+              <div className="tooltip" data-tip="Loads the Zupass UI in a modal, where you can prove your PCD.">
                 <button className="btn btn-secondary w-full tooltip" onClick={getProof} disabled={!!pcd}>
                   {!pcd ? "1. Get Proof" : "1. Proof Received!"}
                 </button>
               </div>
               <div
                 className="tooltip"
-                data-tip="When you get back the «proof», send it to the server so it can verify it."
+                data-tip="When you get back the proof, send it to the server so it can verify it."
               >
                 <button className="btn btn-primary w-full" disabled={!pcd} onClick={sendPCDToServer}>
                   2. Verify
