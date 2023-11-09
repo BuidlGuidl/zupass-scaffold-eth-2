@@ -40,7 +40,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return;
   }
 
-  // TODO: nullifiers
   // TODO: Check that the event id is the one we expect
 
   // ## Actions
