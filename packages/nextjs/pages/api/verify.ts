@@ -51,5 +51,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     account: accounts[0],
   });
 
-  return res.status(200).json({ message: `🎉 PCD verified! 1 ETH has been sent ${address}!`, txHash: result });
+  return res.status(200).json({ message: `🎉 PCD verified! 1 ETH has been sent to ${address}!`, txHash: result });
 }
