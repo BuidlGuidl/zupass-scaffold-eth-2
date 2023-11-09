@@ -2,7 +2,7 @@ import { useScaffoldContractRead } from "~~/hooks/scaffold-eth";
 import { generateWitness } from "~~/utils/scaffold-eth/pcd";
 
 export const MintNFT = ({ pcd }: { pcd: string }) => {
-  const { data: verifiedResult } = useScaffoldContractRead({
+  const { data: verifiedResult, refetch: refetchVerifiedResult } = useScaffoldContractRead({
     contractName: "YourContract",
     functionName: "verifyProof",
     //@ts-expect-error TODO: fix the type later with readlonly fixed lenth bigInt arrays
@@ -17,7 +17,14 @@ export const MintNFT = ({ pcd }: { pcd: string }) => {
       className="tooltip"
       data-tip="When you get back the proof, send it to the contrat so it can verify and mint NFT."
     >
-      <button className="btn btn-primary w-full" disabled={!pcd}>
+      <button
+        className="btn btn-primary w-full"
+        disabled={!pcd}
+        onClick={async () => {
+          const result = await refetchVerifiedResult();
+          console.log("The refetched verified result is", result);
+        }}
+      >
         Mint NFT
       </button>
     </div>
