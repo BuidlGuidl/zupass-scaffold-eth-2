@@ -144,12 +144,12 @@ const Home: NextPage = () => {
                   disabled={!verifiedFrontend || verifiedBackend}
                   onClick={sendPCDToServer}
                 >
-                  3. Verify (backend)
+                  3. Verify (backend) and send ETH
                 </button>
               </div>
               <div className="tooltip" data-tip="Submit the proof to a smart contract to verify it on-chain.">
                 <button className="btn btn-primary w-full" disabled={!verifiedBackend} onClick={verifyProofOnChain}>
-                  4. Verify (on-chain)
+                  4. Verify (on-chain) and mint
                 </button>
               </div>
             </div>
