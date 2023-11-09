@@ -3,6 +3,7 @@ import type { NextPage } from "next";
 import { useAccount } from "wagmi";
 import { useZuAuth } from "zupass-auth";
 import { MetaHeader } from "~~/components/MetaHeader";
+import { MintNFT } from "~~/components/MintNFT";
 import { notification } from "~~/utils/scaffold-eth";
 
 // Get a valid event id from { supportedEvents } from "zuauth" or https://api.zupass.org/issue/known-ticket-types
@@ -93,6 +94,7 @@ const Home: NextPage = () => {
                   2. Verify
                 </button>
               </div>
+              {pcd && <MintNFT pcd={pcd} />}
             </div>
           </div>
         </div>
