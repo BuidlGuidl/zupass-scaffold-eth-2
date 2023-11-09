@@ -1,6 +1,5 @@
 import { useCallback, useState } from "react";
 import { ZKEdDSAEventTicketPCDPackage } from "@pcd/zk-eddsa-event-ticket-pcd";
-import { verifyProof } from "@semaphore-protocol/proof";
 import type { NextPage } from "next";
 import { useAccount } from "wagmi";
 import { isZupassPublicKey, useZuAuth } from "zupass-auth";
