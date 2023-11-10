@@ -89,11 +89,11 @@ export function publicSignalsFromClaim(claim: ZKEdDSAEventTicketPCDClaim): strin
 
 // uint[2] calldata _pA, uint[2][2] calldata _pB, uint[2] calldata _pC, uint[38] calldata _pubSignals
 export const generateWitness = (pcd: ZKEdDSAEventTicketPCD) => {
-  const _pA = convertStringArrayToBigIntArray(pcd.proof.pi_a.slice(0, 2));
-  const _pB = pcd.proof.pi_b.slice(0, 2).map(convertStringArrayToBigIntArray);
-  const _pC = convertStringArrayToBigIntArray(pcd.proof.pi_c.slice(0, 2));
+  const _pA = pcd.proof.pi_a.slice(0, 2);
+  const _pB = [pcd.proof.pi_b[0].slice(0).reverse(), pcd.proof.pi_b[1].slice(0).reverse()];
+  const _pC = pcd.proof.pi_c.slice(0, 2);
 
-  const _pubSignals = convertStringArrayToBigIntArray(publicSignalsFromClaim(pcd.claim));
+  const _pubSignals = publicSignalsFromClaim(pcd.claim);
 
   return [_pA, _pB, _pC, _pubSignals];
 };
