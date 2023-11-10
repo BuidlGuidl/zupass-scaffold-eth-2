@@ -93,7 +93,7 @@ export const generateWitness = (pcd: ZKEdDSAEventTicketPCD) => {
   const _pB = [pcd.proof.pi_b[0].slice(0).reverse(), pcd.proof.pi_b[1].slice(0).reverse()];
   const _pC = pcd.proof.pi_c.slice(0, 2);
 
-  const _pubSignals = publicSignalsFromClaim(pcd.claim);
+  const _pubSignals = convertStringArrayToBigIntArray(publicSignalsFromClaim(pcd.claim));
 
-  return [_pA, _pB, _pC, _pubSignals];
+  return { _pA, _pB, _pC, _pubSignals };
 };
