@@ -4,8 +4,9 @@ import type { NextPage } from "next";
 import { useAccount } from "wagmi";
 import { isZupassPublicKey, useZuAuth } from "zupass-auth";
 import { MetaHeader } from "~~/components/MetaHeader";
-import { MintNFT } from "~~/components/MintNFT";
+import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
 import { notification } from "~~/utils/scaffold-eth";
+import { generateWitness } from "~~/utils/scaffold-eth/pcd";
 
 // Get a valid event id from { supportedEvents } from "zuauth" or https://api.zupass.org/issue/known-ticket-types
 const validEventIds = undefined;
@@ -62,9 +63,13 @@ const Home: NextPage = () => {
     );
   };
 
-  const verifyProofOnChain = async () => {
-    notification.info("ToDo: Verify on-chain");
-  };
+  // mintItem verifies the proof on-chain and mints an NFT
+  const { writeAsync: mintNFT } = useScaffoldContractWrite({
+    contractName: "YourCollectible",
+    functionName: "mintItem",
+    //@ts-expect-error TODO: fix the type later with readlonly fixed length bigInt arrays
+    args: [connectedAddress, pcd ? generateWitness(JSON.parse(pcd)) : undefined],
+  });
 
   const sendPCDToServer = async () => {
     let response;
@@ -148,11 +153,10 @@ const Home: NextPage = () => {
                 </button>
               </div>
               <div className="tooltip" data-tip="Submit the proof to a smart contract to verify it on-chain.">
-                <button className="btn btn-primary w-full" disabled={!verifiedBackend} onClick={verifyProofOnChain}>
+                <button className="btn btn-primary w-full" disabled={!pcd} onClick={() => mintNFT()}>
                   4. Verify (on-chain) and mint
                 </button>
               </div>
-              {pcd && <MintNFT pcd={pcd} />}
             </div>
           </div>
         </div>
