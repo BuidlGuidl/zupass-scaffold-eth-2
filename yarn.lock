@@ -3909,9 +3909,16 @@ __metadata:
     "@pcd/zk-eddsa-event-ticket-pcd": ^0.2.1
     "@rainbow-me/rainbowkit": 1.1.2
     "@trivago/prettier-plugin-sort-imports": ^4.1.1
+    "@types/circomlibjs": ^0.1.6
+    "@types/json-bigint": ^1.0.4
+    "@types/lodash": ^4.14.201
     "@types/node": ^17.0.35
+    "@types/pako": ^2.0.3
+    "@types/qr-image": ^3.2.9
     "@types/react": ^18.0.9
     "@types/react-copy-to-clipboard": ^5.0.4
+    "@types/styled-components": ^5.1.30
+    "@types/uuid": ^9.0.7
     "@typescript-eslint/eslint-plugin": ^5.39.0
     "@uniswap/sdk-core": ^4.0.1
     "@uniswap/v2-sdk": ^3.0.1
@@ -3940,7 +3947,7 @@ __metadata:
     vercel: ^28.15.1
     viem: ^1.16.6
     wagmi: 1.4.4
-    zupass-auth: ^0.0.3
+    zupass-auth: ^0.0.4
     zustand: ^4.1.2
   languageName: unknown
   linkType: soft
@@ -4530,6 +4537,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/circomlibjs@npm:^0.1.6":
+  version: 0.1.6
+  resolution: "@types/circomlibjs@npm:0.1.6"
+  checksum: c1626380bd46f6da6ab45c59338a91f0166933ae987a03eda2ae09c490457aa010e412c46192502198b7b41054ee0129bece3d3edcbabdb05ea226582f772cc4
+  languageName: node
+  linkType: hard
+
 "@types/concat-stream@npm:^1.6.0":
   version: 1.6.1
   resolution: "@types/concat-stream@npm:1.6.1"
@@ -4627,10 +4641,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/hoist-non-react-statics@npm:*":
+  version: 3.3.5
+  resolution: "@types/hoist-non-react-statics@npm:3.3.5"
+  dependencies:
+    "@types/react": "*"
+    hoist-non-react-statics: ^3.3.0
+  checksum: b645b062a20cce6ab1245ada8274051d8e2e0b2ee5c6bd58215281d0ec6dae2f26631af4e2e7c8abe238cdcee73fcaededc429eef569e70908f82d0cc0ea31d7
+  languageName: node
+  linkType: hard
+
 "@types/http-cache-semantics@npm:*":
   version: 4.0.3
   resolution: "@types/http-cache-semantics@npm:4.0.3"
   checksum: 8a672e545fd01ba3a9f16000639ac687bdbbc6bc37e534fbcf55ac9036a168c96f953c79e063d67e937d9fc0be41734d8af378f75bf1ecb7a24e499001486053
+  languageName: node
+  linkType: hard
+
+"@types/json-bigint@npm:^1.0.4":
+  version: 1.0.4
+  resolution: "@types/json-bigint@npm:1.0.4"
+  checksum: 7aee137b3796121cec755247ea56577611c8e5df89224c567fa71999764d01e12199c4089c6be8a9e4e6a6a8f5c6f309eee2965cc3dd8d576f4c4ba432566041
   languageName: node
   linkType: hard
 
@@ -4654,6 +4685,13 @@ __metadata:
   dependencies:
     "@types/node": "*"
   checksum: e009a2bfb50e90ca9b7c6e8f648f8464067271fd99116f881073fa6fa76dc8d0133181dd65e6614d5fb1220d671d67b0124aef7d97dc02d7e342ab143a47779d
+  languageName: node
+  linkType: hard
+
+"@types/lodash@npm:^4.14.201":
+  version: 4.14.201
+  resolution: "@types/lodash@npm:4.14.201"
+  checksum: 484be655298e9b2dc2d218ea934071b2ea31e4a531c561dd220dbda65237e8d08c20dc2d457ac24f29be7fe167415bf7bb9360ea0d80bdb8b0f0ec8d8db92fae
   languageName: node
   linkType: hard
 
@@ -4752,6 +4790,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/pako@npm:^2.0.3":
+  version: 2.0.3
+  resolution: "@types/pako@npm:2.0.3"
+  checksum: 0746dd5d29eccf5b2e6cceb3ccb093851219e78bd2e2e20d25757e247987139e061e5d4ba37cb5295493f06e3c683c74f8876011cd8a3f3748a09244fbc841d9
+  languageName: node
+  linkType: hard
+
 "@types/pbkdf2@npm:^3.0.0":
   version: 3.1.1
   resolution: "@types/pbkdf2@npm:3.1.1"
@@ -4772,6 +4817,15 @@ __metadata:
   version: 15.7.9
   resolution: "@types/prop-types@npm:15.7.9"
   checksum: c7591d3ff7593e243908a07e1d3e2bb6e8879008af5800d8378115a90d0fdf669a1cae72a6d7f69e59c4fa7bb4c8ed61f6ebc1c520fe110c6f2b03ac02414072
+  languageName: node
+  linkType: hard
+
+"@types/qr-image@npm:^3.2.9":
+  version: 3.2.9
+  resolution: "@types/qr-image@npm:3.2.9"
+  dependencies:
+    "@types/node": "*"
+  checksum: fd7f11e95d2e3b9b2b6370434b5f8d9e71f55f678a0648527459f946c6cb368ca36293b18e435b1c30bfa1d1f6018477c9fdca2b15e3f7bd8c445a8fe9207bea
   languageName: node
   linkType: hard
 
@@ -4853,6 +4907,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/styled-components@npm:^5.1.30":
+  version: 5.1.30
+  resolution: "@types/styled-components@npm:5.1.30"
+  dependencies:
+    "@types/hoist-non-react-statics": "*"
+    "@types/react": "*"
+    csstype: ^3.0.2
+  checksum: 22948191a2de0187ab20383c1d9a6b7c9dfda9e6d58f104e03fd8bb8f3ee150b800806e90efa888f1d0fbb53d404613e4b6cccf0c77eb4287e8b1aeb1d7c1cb5
+  languageName: node
+  linkType: hard
+
 "@types/trusted-types@npm:^2.0.2":
   version: 2.0.5
   resolution: "@types/trusted-types@npm:2.0.5"
@@ -4864,6 +4929,13 @@ __metadata:
   version: 2.0.9
   resolution: "@types/unist@npm:2.0.9"
   checksum: 53e63a9ecebc8dca8b9dbc69cd0369ea0c993188ebb6e3b41c222281b4e95d8e0b524bcb1556fd210ea7f39771551be0c1c8fe0000bdcc0cd184cd2cd2794256
+  languageName: node
+  linkType: hard
+
+"@types/uuid@npm:^9.0.7":
+  version: 9.0.7
+  resolution: "@types/uuid@npm:9.0.7"
+  checksum: c7321194aeba9ea173efd1e721403bdf4e7ae6945f8f8cdbc87c791f4b505ccf3dbc4a8883d90b394ef13b7c2dc778045792b05dbb23b3c746f8ea347804d448
   languageName: node
   linkType: hard
 
@@ -11217,7 +11289,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hoist-non-react-statics@npm:^3.0.0":
+"hoist-non-react-statics@npm:^3.0.0, hoist-non-react-statics@npm:^3.3.0":
   version: 3.3.2
   resolution: "hoist-non-react-statics@npm:3.3.2"
   dependencies:
@@ -18843,9 +18915,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zupass-auth@npm:^0.0.3":
-  version: 0.0.3
-  resolution: "zupass-auth@npm:0.0.3"
+"zupass-auth@npm:^0.0.4":
+  version: 0.0.4
+  resolution: "zupass-auth@npm:0.0.4"
   dependencies:
     "@pcd/eddsa-ticket-pcd": ^0.3.0
     "@pcd/pcd-types": ^0.8.0
@@ -18853,7 +18925,7 @@ __metadata:
     "@pcd/zk-eddsa-event-ticket-pcd": ^0.2.1
     react: ^18
     react-dom: ^18
-  checksum: 42b73ec217fb5e380ef806e526fce75420fe3a1bb320a268868fb49bda11e6cfb5ef3b28950775b1519f0b0faf2b627c6c0399e22df51680543621d4c2f38bf8
+  checksum: 46ce13fcd01183733741606fcbe40017254d761d7f0fb304641aa635aa983935e41458b248542ebff1a5e443963b28cf5aa87ef928eb11dac7ec5e0f9ced258f
   languageName: node
   linkType: hard
 

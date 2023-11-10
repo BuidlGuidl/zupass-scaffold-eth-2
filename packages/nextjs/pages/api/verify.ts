@@ -40,7 +40,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return;
   }
 
-  // TODO: nullifiers
   // TODO: Check that the event id is the one we expect
 
   // ## Actions
@@ -51,7 +50,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     account: accounts[0],
   });
 
-  console.log("sent 1 eth to " + address, result);
-
-  return res.status(200).json({ message: `🎉 PCD verified! 1 ETH has been sent ${address}!`, txHash: result });
+  return res.status(200).json({ message: `🎉 PCD verified! 1 ETH has been sent to ${address}!`, txHash: result });
 }
