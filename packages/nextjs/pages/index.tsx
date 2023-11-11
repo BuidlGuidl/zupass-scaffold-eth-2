@@ -21,6 +21,7 @@ const nonce = "1";
 const Home: NextPage = () => {
   const [verifiedFrontend, setVerifiedFrontend] = useState(false);
   const [verifiedBackend, setVerifiedBackend] = useState(false);
+  const [verifiedOnChain, setVerifiedOnChain] = useState(false);
   const { authenticate, pcd } = useZuAuth();
   const { address: connectedAddress } = useAccount();
 
@@ -67,7 +68,6 @@ const Home: NextPage = () => {
   const { writeAsync: mintNFT } = useScaffoldContractWrite({
     contractName: "YourCollectible",
     functionName: "mintItem",
-    //@ts-expect-error TODO: fix the type later with readlonly fixed length bigInt arrays
     args: [connectedAddress, pcd ? generateWitness(JSON.parse(pcd)) : undefined],
   });
 
@@ -153,8 +153,32 @@ const Home: NextPage = () => {
                 </button>
               </div>
               <div className="tooltip" data-tip="Submit the proof to a smart contract to verify it on-chain.">
-                <button className="btn btn-primary w-full" disabled={!pcd} onClick={() => mintNFT()}>
+                <button
+                  className="btn btn-primary w-full"
+                  disabled={!verifiedBackend || verifiedOnChain}
+                  onClick={async () => {
+                    try {
+                      await mintNFT();
+                    } catch (e) {
+                      notification.error(`Error: ${e}`);
+                      return;
+                    }
+                    setVerifiedOnChain(true);
+                  }}
+                >
                   4. Verify (on-chain) and mint
+                </button>
+              </div>
+              <div className="flex justify-center">
+                <button
+                  className="btn btn-ghost text-error underline normal-case"
+                  onClick={() => {
+                    setVerifiedFrontend(false);
+                    setVerifiedBackend(false);
+                    setVerifiedOnChain(false);
+                  }}
+                >
+                  Reset
                 </button>
               </div>
             </div>

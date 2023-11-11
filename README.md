@@ -34,7 +34,12 @@ yarn install
 yarn chain
 ```
 
-4. On a second terminal start the frontend
+4. On a second terminal, deploy the contracts
+```bash
+yarn deploy
+```
+
+5. Start the frontend
 ```bash
 yarn start
 ```
