@@ -4,7 +4,9 @@ import type { NextPage } from "next";
 import { useAccount } from "wagmi";
 import { isZupassPublicKey, useZuAuth } from "zupass-auth";
 import { MetaHeader } from "~~/components/MetaHeader";
+import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
 import { notification } from "~~/utils/scaffold-eth";
+import { generateWitness } from "~~/utils/scaffold-eth/pcd";
 
 // Get a valid event id from { supportedEvents } from "zuauth" or https://api.zupass.org/issue/known-ticket-types
 const validEventIds = undefined;
@@ -19,6 +21,7 @@ const nonce = "1";
 const Home: NextPage = () => {
   const [verifiedFrontend, setVerifiedFrontend] = useState(false);
   const [verifiedBackend, setVerifiedBackend] = useState(false);
+  const [verifiedOnChain, setVerifiedOnChain] = useState(false);
   const { authenticate, pcd } = useZuAuth();
   const { address: connectedAddress } = useAccount();
 
@@ -61,9 +64,13 @@ const Home: NextPage = () => {
     );
   };
 
-  const verifyProofOnChain = async () => {
-    notification.info("ToDo: Verify on-chain");
-  };
+  // mintItem verifies the proof on-chain and mints an NFT
+  const { writeAsync: mintNFT } = useScaffoldContractWrite({
+    contractName: "YourCollectible",
+    functionName: "mintItem",
+    // @ts-ignore TODO: fix the type later with readonly fixed length bigInt arrays
+    args: [connectedAddress, pcd ? generateWitness(JSON.parse(pcd)) : undefined],
+  });
 
   const sendPCDToServer = async () => {
     let response;
@@ -147,8 +154,32 @@ const Home: NextPage = () => {
                 </button>
               </div>
               <div className="tooltip" data-tip="Submit the proof to a smart contract to verify it on-chain.">
-                <button className="btn btn-primary w-full" disabled={!verifiedBackend} onClick={verifyProofOnChain}>
+                <button
+                  className="btn btn-primary w-full"
+                  disabled={!verifiedBackend || verifiedOnChain}
+                  onClick={async () => {
+                    try {
+                      await mintNFT();
+                    } catch (e) {
+                      notification.error(`Error: ${e}`);
+                      return;
+                    }
+                    setVerifiedOnChain(true);
+                  }}
+                >
                   4. Verify (on-chain) and mint
+                </button>
+              </div>
+              <div className="flex justify-center">
+                <button
+                  className="btn btn-ghost text-error underline normal-case"
+                  onClick={() => {
+                    setVerifiedFrontend(false);
+                    setVerifiedBackend(false);
+                    setVerifiedOnChain(false);
+                  }}
+                >
+                  Reset
                 </button>
               </div>
             </div>

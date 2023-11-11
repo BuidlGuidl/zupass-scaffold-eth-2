@@ -3592,7 +3592,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pcd/util@npm:0.2.0":
+"@pcd/util@npm:0.2.0, @pcd/util@npm:^0.2.0":
   version: 0.2.0
   resolution: "@pcd/util@npm:0.2.0"
   dependencies:
@@ -3905,6 +3905,7 @@ __metadata:
     "@pcd/eddsa-ticket-pcd": ^0.3.0
     "@pcd/passport-interface": ^0.8.0
     "@pcd/semaphore-identity-pcd": ^0.8.0
+    "@pcd/util": ^0.2.0
     "@pcd/zk-eddsa-event-ticket-pcd": ^0.2.1
     "@rainbow-me/rainbowkit": 1.1.2
     "@trivago/prettier-plugin-sort-imports": ^4.1.1
@@ -3928,6 +3929,7 @@ __metadata:
     eslint-config-next: ^13.1.6
     eslint-config-prettier: ^8.5.0
     eslint-plugin-prettier: ^4.2.1
+    js-sha256: ^0.10.1
     next: ^13.1.6
     nextjs-progressbar: ^0.0.16
     postcss: ^8.4.16
