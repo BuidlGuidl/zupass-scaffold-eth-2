@@ -68,6 +68,7 @@ const Home: NextPage = () => {
   const { writeAsync: mintNFT } = useScaffoldContractWrite({
     contractName: "YourCollectible",
     functionName: "mintItem",
+    // @ts-ignore TODO: fix the type later with readonly fixed length bigInt arrays
     args: [connectedAddress, pcd ? generateWitness(JSON.parse(pcd)) : undefined],
   });
 
