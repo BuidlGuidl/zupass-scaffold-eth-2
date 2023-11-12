@@ -8,8 +8,20 @@ import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
 import { notification } from "~~/utils/scaffold-eth";
 import { generateWitness } from "~~/utils/scaffold-eth/pcd";
 
+const DEVCONNECT_VALID_EVENT_IDS = [
+  "785e8a0e-6734-11ee-b810-a2b83754f6bc",
+  "0996f5fa-6736-11ee-a3bd-a2b83754f6bc",
+  "f626d630-2f8a-11ee-be83-b2dd9fd377ba",
+  "a1c822c4-60bd-11ee-8732-763dbf30819c",
+  "3049870c-6cc8-11ee-98f3-7ebd6aca95cd",
+  "aebcb892-69e5-11ee-b65e-a2b83754f6bc",
+  "7b57a8fc-6bae-11ee-bf2a-9e102a509962",
+  "e1423686-6cc7-11ee-98f3-7ebd6aca95cd",
+  "140b208c-6d1d-11ee-8320-126a2f5f3c5e",
+];
+
 // Get a valid event id from { supportedEvents } from "zuauth" or https://api.zupass.org/issue/known-ticket-types
-const validEventIds = undefined;
+const validEventIds = DEVCONNECT_VALID_EVENT_IDS;
 const fieldsToReveal = {
   revealAttendeeEmail: true,
   revealEventId: true,
