@@ -1,5 +1,7 @@
 # 🏗 Devconnect Zupass: SE2 Starter Kit
 
+TLDR: 🎥 [watch the intro video here](https://youtu.be/7SGaMHOYc04)
+
 Get started with [Zupass](https://github.com/proofcarryingdata/zupass) to generate proofs & verify PCDs (Proof-Carrying Data).
 
 In this Starter Kit you'll find an example of how to generate a proof and verify it on the backend.
@@ -49,7 +51,7 @@ Visit your app on http://localhost:3000/
 ### Resources
 
 🎥 [Watch the BG & Zupass team first zoom meeting here](https://youtu.be/kwACdt3gRms)
-
+🎥 [Watch the BG & Zupass team second zoom meeting here](https://www.youtube.com/watch?v=yY7XdaCjC7I)
 
 Some links mentioned in the video
 
