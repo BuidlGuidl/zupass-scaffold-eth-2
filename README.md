@@ -1,4 +1,4 @@
-# 🏗 Zupass: Scaffold-ETH 2 Starter Kit
+# 🏗 Devconnect Zupass: SE2 Starter Kit
 
 Get started with [Zupass](https://github.com/proofcarryingdata/zupass) to generate proofs & verify PCDs (Proof-Carrying Data).
 
