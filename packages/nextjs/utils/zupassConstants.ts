@@ -8,5 +8,5 @@ export const DEVCONNECT_VALID_EVENT_IDS = [
   "7b57a8fc-6bae-11ee-bf2a-9e102a509962", // ETHconomics
   "e1423686-6cc7-11ee-98f3-7ebd6aca95cd", // Next Billion
   "140b208c-6d1d-11ee-8320-126a2f5f3c5e", // Wallet Unconference
-  //   "b03bca82-2d63-11ee-9929-0e084c48e15f" // TEST event
+  "b03bca82-2d63-11ee-9929-0e084c48e15f", // TEST event
 ];
