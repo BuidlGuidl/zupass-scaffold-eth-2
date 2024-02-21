@@ -9,4 +9,5 @@ export const DEVCONNECT_VALID_EVENT_IDS = [
   "e1423686-6cc7-11ee-98f3-7ebd6aca95cd", // Next Billion
   "140b208c-6d1d-11ee-8320-126a2f5f3c5e", // Wallet Unconference
   "b03bca82-2d63-11ee-9929-0e084c48e15f", // TEST event
+  "be4dbf9c-abc9-4bc2-a731-3464b84ce3fb", // "ETH LATAM"
 ];

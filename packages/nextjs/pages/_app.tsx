@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import type { AppProps } from "next/app";
+import { useRouter } from "next/router";
 import { RainbowKitProvider, darkTheme, lightTheme } from "@rainbow-me/rainbowkit";
 import "@rainbow-me/rainbowkit/styles.css";
 import NextNProgress from "nextjs-progressbar";
@@ -22,6 +23,9 @@ const ScaffoldEthApp = ({ Component, pageProps }: AppProps) => {
   const [isDarkTheme, setIsDarkTheme] = useState(true);
   const { isDarkMode } = useDarkMode();
 
+  const router = useRouter();
+  const currentPath = router.pathname;
+
   useEffect(() => {
     if (price > 0) {
       setNativeCurrencyPrice(price);
@@ -31,6 +35,15 @@ const ScaffoldEthApp = ({ Component, pageProps }: AppProps) => {
   useEffect(() => {
     setIsDarkTheme(isDarkMode);
   }, [isDarkMode]);
+
+  if (currentPath === "/popup") {
+    return (
+      <div className="zupass-popup">
+        {/* "Empty" route (no header, footer) */}
+        <Component {...pageProps} />
+      </div>
+    );
+  }
 
   return (
     <WagmiConfig config={wagmiConfig}>
